@@ -1,8 +1,8 @@
 import React from 'react';
 import { Users, Trash2 } from 'lucide-react';
 
-const ContactList = ({ contacts, onDelete, onSort, sortConfig }) => {
-    if (contacts.length === 0) {
+const ContactList = ({ contacts = [], onDelete, onSort, sortConfig }) => {
+    if (!contacts || contacts.length === 0) {
         return (
             <div className="bg-white rounded-lg shadow-md p-8 text-center">
                 <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
@@ -23,7 +23,7 @@ const ContactList = ({ contacts, onDelete, onSort, sortConfig }) => {
         </button>
     );
 
-    return (
+    return ( 
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="p-6 border-b border-gray-200">
                 <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">

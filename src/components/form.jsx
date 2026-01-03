@@ -18,9 +18,9 @@ const ContactForm = ({ onSubmit, isLoading }) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
 
-        if (touched[name]) {
-            setErrors(prev => ({ ...prev, [name]: validateField(name, value) }));
-        }
+        // if (touched[name]) {
+        //     setErrors(prev => ({ ...prev, [name]: validateField(name, value) }));
+        // }
     };
 
    

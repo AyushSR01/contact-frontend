@@ -1,9 +1,19 @@
-const API_BASE = 'https://contact-management-api-0upn.onrender.com/api/contacts' || 'http://localhost:5000/api/contacts';
+const API_BASE = 'http://localhost:5000/api/contacts';
+
+const handleResponse = async (res) => {
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || 'API Error');
+  }
+
+  return data;
+};
 
 const apiService = {
   getContacts: async () => {
     const res = await fetch(API_BASE);
-    return res.json();
+    return handleResponse(res);
   },
 
   createContact: async (contact) => {
@@ -12,7 +22,7 @@ const apiService = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(contact),
     });
-    return res.json();
+    return handleResponse(res);
   },
 
   updateContact: async (id, data) => {
@@ -21,14 +31,14 @@ const apiService = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
-    return res.json();
+    return handleResponse(res);
   },
 
   deleteContact: async (id) => {
     const res = await fetch(`${API_BASE}/${id}`, {
       method: 'DELETE',
     });
-    return res.json();
+    return handleResponse(res);
   },
 };
 

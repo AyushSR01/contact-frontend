@@ -18,17 +18,20 @@ function App() {
   const fetchContacts = async () => {
     try {
       const response = await apiService.getContacts();
-      setContacts(response.data);
+      setContacts(response.data || []); // ✅ FIX
     } catch (error) {
       console.error('Error fetching contacts:', error);
+      setContacts([]);
     }
   };
+
+
 
   const handleAddContact = async (contactData) => {
     setIsLoading(true);
     try {
       const response = await apiService.createContact(contactData);
-      setContacts(prev => [response.data, ...prev]);
+      setContacts(prev => [response.data, ...prev]); // ✅ FIX
       setSuccessMessage('Contact added successfully!');
       setTimeout(() => setSuccessMessage(''), 3000);
     } catch (error) {
@@ -37,6 +40,8 @@ function App() {
       setIsLoading(false);
     }
   };
+
+
 
   const handleDeleteContact = async (id) => {
     if (!window.confirm('Are you sure you want to delete this contact?')) return;
@@ -73,7 +78,7 @@ function App() {
   });
 
   return (
-    <div className=" bg-gray-950 text-gray-100 px-4 py-6">
+    <div className=" bg-gray-950 text-gray-100 px-4 py-6 ">
 
       {/* Header */}
       <header className=" mx-auto mb-8 text-center ">
