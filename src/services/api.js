@@ -1,4 +1,4 @@
-const API_BASE = 'https://contact-management-api-0upn.onrender.com/api/contacts';
+const API_BASE = 'https://contact-management-api-0upn.onrender.com/api/contacts' || 'http://localhost:5000/api/contacts';
 
 const apiService = {
   getContacts: async () => {
